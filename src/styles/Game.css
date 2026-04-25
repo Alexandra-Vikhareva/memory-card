@@ -3,3 +3,19 @@
     grid-template-columns: repeat(4, 1fr);
     justify-items: center
 }
+
+.game-message {
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.win {
+    background-color: cadetblue;
+}
+
+.loose {
+    background-color: brown;
+}
