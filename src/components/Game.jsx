@@ -66,6 +66,26 @@ export default function Game () {
         return fruitItem
     }
 
+    async function getFruitList(listLength = 4) {
+        let count = 0;
+        const res = new Set();
+        const maxId = await getFruitsCount();
+        const ids = new Set();
+        while (count < listLength) {
+            const newId = Math.floor(Math.random() * maxId);
+            if (!ids.has(newId)) {
+                ids.add(newId);
+                const newItem = await getFruitItem(newId);
+                if (!(newItem.image == null)) res.add(newItem)
+            }
+            count = res.size
+        }
+        
+        return res
+    }
+
+    getFruitList()
+
     return (
         
         <div>
