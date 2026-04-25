@@ -102,7 +102,7 @@ export default function Game () {
         return Array.from(res)
     }
 
-    if (isMain) return <div>
+    if (isMain) return <div className='main-menu'>
         <p>Выберите уровень</p>
         <button onClick={() => handleLevle(4)}>Лёгкий</button>
         <button onClick={() => handleLevle(8)}>Средний</button>

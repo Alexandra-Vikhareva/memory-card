@@ -72,3 +72,15 @@
   60% { content: '..'; }
   80%, 100% { content: '...'; }
 }
+
+.main-menu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    padding: 30px 60px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
