@@ -5,7 +5,7 @@ export default function Card({id, image, onClick}) {
             <div className="card"
                 id={id}
                 onClick={() => onClick(id)}>
-                {image}
+                <img src={image}/>
             </div>
     )
 }
