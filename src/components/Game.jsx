@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
 import Card from './Card'
-import { cardsData } from '../data/cardData'
 import '../styles/Game.css'
 import shuffle from '../utils/shuffle'
 
 export default function Game () {
-    const [cards, setCards] = useState(cardsData);
+    const [cards, setCards] = useState([]);
     const [isGameFinished, setGameFinished] = useState(false);
     const [currentScore, setCurrentScore] = useState(0);
     const [maxScore, setMaxScore] = useState(() => {const localScore = localStorage.getItem('maxScore');
@@ -89,7 +88,6 @@ export default function Game () {
     useEffect(() => {
         async function load() {
             try {
-                setLoading(true)
                 const fruitList = await getFruitList()
                 setCards(fruitList)
                 setLoading(false)
