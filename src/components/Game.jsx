@@ -80,8 +80,21 @@ export default function Game () {
             }
         }
         
-        return res
+        return Array.from(res)
     }
+
+    useEffect(() => {
+        async function load() {
+            try {
+                const fruitList = await getFruitList()
+                setCards(fruitList)
+                console.log(cards)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        load();
+    },[])
 
     return (
         
