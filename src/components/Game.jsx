@@ -12,6 +12,8 @@ export default function Game () {
                                                 return localScore
                                             });
     const [isLoading, setLoading] = useState(true);
+    const [difficulty, setDifficulty] = useState(0);
+    const [isMain, setMain] = useState(true);
 
     useEffect(() => {
         localStorage.setItem('maxScore', maxScore)
@@ -42,10 +44,20 @@ export default function Game () {
         }   
     }
 
-    async function resetGame() {
+    function handleLevle(level) {
+        setDifficulty(level)
+        setMain(false)
+        resetGame(level)
+    }
+
+    useEffect(() => {
+        console.log(difficulty)
+    }, [difficulty])
+
+    async function resetGame(level = difficulty) {
         setLoading(true);
         try {
-            const newArr = await getFruitList();
+            const newArr = await getFruitList(level);
             setCards(newArr);
             setGameFinished(false);
             setCurrentScore(0);
@@ -90,24 +102,31 @@ export default function Game () {
         return Array.from(res)
     }
 
-    useEffect(() => {
-        async function load() {
-            try {
-                const fruitList = await getFruitList()
-                setCards(fruitList)
-            } catch (err) {
-                console.error('Ошибка загрузки:', err)
-            } finally {
-                setLoading(false);
-            }
-        }
-        load();
-    },[])
+    // useEffect(() => {
+    //     async function load() {
+    //         try {
+    //             const fruitList = await getFruitList()
+    //             setCards(fruitList)
+    //         } catch (err) {
+    //             console.error('Ошибка загрузки:', err)
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     }
+    //     load();
+    // },[])
 
+    if (isMain) return <div>
+        <p>Выберите уровень</p>
+        <button onClick={() => handleLevle(4)}>Лёгкий</button>
+        <button onClick={() => handleLevle(8)}>Средний</button>
+        <button onClick={() => handleLevle(12)}>Сложный</button>
+        </div>
     if (isLoading) return <div className='loading-dots'>Загрузка фруктов</div>
     else {
         return (
             <div>
+                <button onClick={() => setMain(true)}>Выбрать уровень</button>
                 <div className='info'>
                     <div>Счёт: {currentScore}</div>
                     <div>Рекорд: {maxScore}</div>
@@ -130,7 +149,7 @@ export default function Game () {
                         ))   
                     }
                 </div>
-                <button className='new-game btn' onClick={resetGame}>Новая игра</button>
+                <button className='new-game btn' onClick={() => resetGame(difficulty)}>Новая игра</button>
             </div>
         )}
 }
