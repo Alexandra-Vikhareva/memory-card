@@ -104,7 +104,7 @@ export default function Game () {
         load();
     },[])
 
-    if (isLoading) return <div>Загрузка фруктов...</div>
+    if (isLoading) return <div className='loading-dots'>Загрузка фруктов</div>
     else {
         return (
             <div>

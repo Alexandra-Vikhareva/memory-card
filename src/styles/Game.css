@@ -51,3 +51,24 @@
     gap: 5px;
     margin-bottom: 20px;
 }
+
+.loading-dots {
+    text-align: center;
+    margin: 50px;
+    font-size: 20px;
+}
+
+.loading-dots::after {
+  content: '...';
+  animation: dots 1.5s steps(4, end) infinite;
+  display: inline-block;
+  width: 24px;
+  text-align: left;
+}
+
+@keyframes dots {
+  0%, 20% { content: ''; }
+  40% { content: '.'; }
+  60% { content: '..'; }
+  80%, 100% { content: '...'; }
+}
