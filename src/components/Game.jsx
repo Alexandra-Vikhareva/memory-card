@@ -67,24 +67,21 @@ export default function Game () {
     }
 
     async function getFruitList(listLength = 4) {
-        let count = 0;
         const res = new Set();
         const maxId = await getFruitsCount();
         const ids = new Set();
-        while (count < listLength) {
-            const newId = Math.floor(Math.random() * maxId);
+
+        while (res.size < listLength) {
+            const newId = Math.floor(Math.random() * maxId) + 1;
             if (!ids.has(newId)) {
                 ids.add(newId);
                 const newItem = await getFruitItem(newId);
-                if (!(newItem.image == null)) res.add(newItem)
+                if (newItem.image && newItem.image.trim() !== '') res.add(newItem)
             }
-            count = res.size
         }
         
         return res
     }
-
-    getFruitList()
 
     return (
         
