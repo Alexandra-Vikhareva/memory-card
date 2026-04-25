@@ -55,7 +55,17 @@ export default function Game () {
 
         return fruitsCount
     }
-    
+
+    function getFruitItem(id) {
+        const fruitItem = fetch(`https://api.api-onepiece.com/v2/fruits/en/${id}`)
+        .then(response => response.json())
+        .then(data => ({id: data.id, 
+                       image: data.filename,
+                       isClicked: false}))
+
+        return fruitItem
+    }
+
     return (
         
         <div>
