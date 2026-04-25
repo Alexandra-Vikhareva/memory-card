@@ -42,6 +42,12 @@ export default function Game () {
         }   
     }
 
+    function resetGame() {
+        const newArr = shuffle(cardsData);
+        setCards(newArr);
+        setGameFinished(false);
+    }
+
     return (
         
         <div>
@@ -63,6 +69,7 @@ export default function Game () {
                     ))   
                 }
             </div>
+            <button className='new-game btn' onClick={resetGame}>Новая игра</button>
         </div>
     )
 }
