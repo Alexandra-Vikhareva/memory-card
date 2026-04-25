@@ -42,8 +42,8 @@ export default function Game () {
         }   
     }
 
-    function resetGame() {
-        const newArr = shuffle(cardsData);
+    async function resetGame() {
+        const newArr = await getFruitList();
         setCards(newArr);
         setGameFinished(false);
         setCurrentScore(0);
