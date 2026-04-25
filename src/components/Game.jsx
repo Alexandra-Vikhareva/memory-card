@@ -49,6 +49,13 @@ export default function Game () {
         setCurrentScore(0);
     }
 
+    function getFruitsCount() {
+        const fruitsCount = fetch('https://api.api-onepiece.com/v2/fruits/en/count')
+        .then(response => response.json())
+
+        return fruitsCount
+    }
+    
     return (
         
         <div>
