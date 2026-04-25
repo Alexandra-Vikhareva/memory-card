@@ -44,11 +44,16 @@ export default function Game () {
 
     async function resetGame() {
         setLoading(true);
-        const newArr = await getFruitList();
-        setCards(newArr);
-        setGameFinished(false);
-        setCurrentScore(0);
-        setLoading(false);
+        try {
+            const newArr = await getFruitList();
+            setCards(newArr);
+            setGameFinished(false);
+            setCurrentScore(0);
+        } catch (err) {
+            console.error('Ошибка сброса:', err);
+        } finally {
+            setLoading(false);
+        }
     }
 
     function getFruitsCount() {
@@ -90,13 +95,15 @@ export default function Game () {
             try {
                 const fruitList = await getFruitList()
                 setCards(fruitList)
-                setLoading(false)
             } catch (err) {
-                console.log(err)
+                console.error('Ошибка загрузки:', err)
+            } finally {
+                setLoading(false);
             }
         }
         load();
     },[])
+
     if (isLoading) return <div>Загрузка фруктов...</div>
     else {
         return (
