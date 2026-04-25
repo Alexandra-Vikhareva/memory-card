@@ -69,7 +69,7 @@ export default function Game () {
                     ))   
                 }
             </div>
-            <button onClick={resetGame}>Новая игра</button>
+            <button className='new-game btn' onClick={resetGame}>Новая игра</button>
         </div>
     )
 }
