@@ -12,13 +12,13 @@ export default function Game () {
         console.log(cards);
     }, [cards]);
 
-    useEffect(() => {
-        if (cards.every(el => el.isClicked)) {
-            console.log('Вы победили!')
-        }else if (isGameFinished){
-                console.log('Вы проиграли!')
-        }
-    }, [cards, isGameFinished])
+    // useEffect(() => {
+    //     if (cards.every(el => el.isClicked)) {
+    //         console.log('Вы победили!')
+    //     }else if (isGameFinished){
+    //             console.log('Вы проиграли!')
+    //     }
+    // }, [cards, isGameFinished])
 
     function handleCardClick(id) {
         if (!isGameFinished) {
@@ -43,15 +43,26 @@ export default function Game () {
     }
 
     return (
-        <div className='cardsGrid'>
-            {
-                cards.map((item)=> (
-                <Card image={item.image} 
-                        id={item.id}
-                        key={item.id}
-                        onClick={handleCardClick}></Card>
-                ))   
-            }
+        
+        <div>
+            {isGameFinished && (
+                <div className={`game-message ${cards.every(card => card.isClicked) ? 'win' : 'loose'}`}>
+                {cards.every(card => card.isClicked) 
+                    ? '🎉 Победа! 🎉' 
+                    : '💀 Вы проиграли! 💀'}
+                </div>
+            )}
+
+            <div className='cardsGrid'>
+                {
+                    cards.map((item)=> (
+                    <Card image={item.image} 
+                            id={item.id}
+                            key={item.id}
+                            onClick={handleCardClick}></Card>
+                    ))   
+                }
+            </div>
         </div>
     )
 }
