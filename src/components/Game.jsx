@@ -14,20 +14,8 @@ export default function Game () {
                                             });
 
     useEffect(() => {
-        console.log(cards);
-    }, [cards]);
-
-    useEffect(() => {
         localStorage.setItem('maxScore', maxScore)
     }, [maxScore])
-
-    // useEffect(() => {
-    //     if (cards.every(el => el.isClicked)) {
-    //         console.log('Вы победили!')
-    //     }else if (isGameFinished){
-    //             console.log('Вы проиграли!')
-    //     }
-    // }, [cards, isGameFinished])
 
     function handleCardClick(id) {
         if (!isGameFinished) {
