@@ -7,18 +7,15 @@ import shuffle from '../utils/shuffle'
 export default function Game () {
     const [cards, setCards] = useState(cardsData);
     const [isGameFinished, setGameFinished] = useState(false);
+    const [currentScore, setCurrentScore] = useState(0);
+    const [maxScore, setMaxScore] = useState(() => {const localScore = localStorage.getItem('maxScore');
+                                                if (!localScore) return 0
+                                                return localScore
+                                            });
 
     useEffect(() => {
-        console.log(cards);
-    }, [cards]);
-
-    // useEffect(() => {
-    //     if (cards.every(el => el.isClicked)) {
-    //         console.log('Вы победили!')
-    //     }else if (isGameFinished){
-    //             console.log('Вы проиграли!')
-    //     }
-    // }, [cards, isGameFinished])
+        localStorage.setItem('maxScore', maxScore)
+    }, [maxScore])
 
     function handleCardClick(id) {
         if (!isGameFinished) {
@@ -29,6 +26,9 @@ export default function Game () {
                 setGameFinished(true)
             }
             else {
+                const newScore = currentScore + 1;
+                setCurrentScore(newScore);
+                if (newScore > maxScore) setMaxScore(newScore)
                 setCards(prev => {
                     const marked =  prev.map(item => 
                                     item.id === id 
@@ -46,11 +46,16 @@ export default function Game () {
         const newArr = shuffle(cardsData);
         setCards(newArr);
         setGameFinished(false);
+        setCurrentScore(0);
     }
 
     return (
         
         <div>
+            <div className='info'>
+                <div>Счёт: {currentScore}</div>
+                <div>Рекорд: {maxScore}</div>
+            </div>
             {isGameFinished && (
                 <div className={`game-message ${cards.every(card => card.isClicked) ? 'win' : 'loose'}`}>
                 {cards.every(card => card.isClicked) 
