@@ -102,20 +102,6 @@ export default function Game () {
         return Array.from(res)
     }
 
-    // useEffect(() => {
-    //     async function load() {
-    //         try {
-    //             const fruitList = await getFruitList()
-    //             setCards(fruitList)
-    //         } catch (err) {
-    //             console.error('Ошибка загрузки:', err)
-    //         } finally {
-    //             setLoading(false);
-    //         }
-    //     }
-    //     load();
-    // },[])
-
     if (isMain) return <div>
         <p>Выберите уровень</p>
         <button onClick={() => handleLevle(4)}>Лёгкий</button>
