@@ -12,6 +12,7 @@ export default function Game () {
                                                 if (!localScore) return 0
                                                 return localScore
                                             });
+    const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
         localStorage.setItem('maxScore', maxScore)
@@ -43,10 +44,12 @@ export default function Game () {
     }
 
     async function resetGame() {
+        setLoading(true);
         const newArr = await getFruitList();
         setCards(newArr);
         setGameFinished(false);
         setCurrentScore(0);
+        setLoading(false);
     }
 
     function getFruitsCount() {
@@ -86,42 +89,43 @@ export default function Game () {
     useEffect(() => {
         async function load() {
             try {
+                setLoading(true)
                 const fruitList = await getFruitList()
                 setCards(fruitList)
-                console.log(cards)
+                setLoading(false)
             } catch (err) {
                 console.log(err)
             }
         }
         load();
     },[])
-
-    return (
-        
-        <div>
-            <div className='info'>
-                <div>Счёт: {currentScore}</div>
-                <div>Рекорд: {maxScore}</div>
-            </div>
-            {isGameFinished && (
-                <div className={`game-message ${cards.every(card => card.isClicked) ? 'win' : 'loose'}`}>
-                {cards.every(card => card.isClicked) 
-                    ? '🎉 Победа! 🎉' 
-                    : '💀 Вы проиграли! 💀'}
+    if (isLoading) return <div>Загрузка фруктов...</div>
+    else {
+        return (
+            <div>
+                <div className='info'>
+                    <div>Счёт: {currentScore}</div>
+                    <div>Рекорд: {maxScore}</div>
                 </div>
-            )}
+                {isGameFinished && (
+                    <div className={`game-message ${cards.every(card => card.isClicked) ? 'win' : 'loose'}`}>
+                    {cards.every(card => card.isClicked) 
+                        ? '🎉 Победа! 🎉' 
+                        : '💀 Вы проиграли! 💀'}
+                    </div>
+                )}
 
-            <div className='cardsGrid'>
-                {
-                    cards.map((item)=> (
-                    <Card image={item.image} 
-                            id={item.id}
-                            key={item.id}
-                            onClick={handleCardClick}></Card>
-                    ))   
-                }
+                <div className='cardsGrid'>
+                    {
+                        cards.map((item)=> (
+                        <Card image={item.image} 
+                                id={item.id}
+                                key={item.id}
+                                onClick={handleCardClick}></Card>
+                        ))   
+                    }
+                </div>
+                <button className='new-game btn' onClick={resetGame}>Новая игра</button>
             </div>
-            <button className='new-game btn' onClick={resetGame}>Новая игра</button>
-        </div>
-    )
+        )}
 }
