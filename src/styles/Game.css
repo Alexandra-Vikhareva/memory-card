@@ -1,3 +1,12 @@
+:root {
+    --white-color: #ffffff;
+    --accent-color: #d73332;
+    --accent-color-secondary: #9e3630;
+    --background-color: #f4f4f4;
+    --text-color: #333333;
+    font-family: 'Roboto', sans-serif;
+}
+
 .cardsGrid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -80,15 +89,46 @@
 }
 
 .main-menu {
+    font-size: 27px;
+    color: var(--text-color);
+    font-weight: 600;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 1px solid black;
+    background-color: rgba(244, 244, 244, 0.8);
     padding: 30px 60px;
-    border-radius: 15px;
     display: flex;
     flex-direction: column;
+}
+
+.main-menu p {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    padding: 10px;
+    border-bottom: 5px solid var(--accent-color-secondary);
+}
+
+.main-menu button {
+    background-color: #d73332;
+    color: #ffffff;
+    border: none;
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.main-menu button:hover {
+    color: #d73332;
+    background-color: #ffffff;
+    box-shadow: 5px 5px var(--accent-color-secondary);
+}
+
+.main-menu button:hover::after {
+    content: '▶';
+    position: relative;
+    left: 10px;
 }
 
 .menu-screen {
