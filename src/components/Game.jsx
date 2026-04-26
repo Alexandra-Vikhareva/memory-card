@@ -108,7 +108,13 @@ export default function Game () {
         <button onClick={() => handleLevle(8)}>Средний</button>
         <button onClick={() => handleLevle(12)}>Сложный</button>
         </div>
-    if (isLoading) return <div className='loading-dots'>Загрузка фруктов</div>
+    if (isLoading) return (
+        <div className='loading'>
+            <img src="src/img/luffy-one-piece.gif" alt="Луффи бежит" />
+            <div className='loading-dots'>Загрузка фруктов</div>
+        </div>
+        
+    )
     else {
         return (
             <div>
