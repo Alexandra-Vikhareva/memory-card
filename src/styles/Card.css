@@ -1,3 +1,5 @@
+@import '../App.css';
+
 .card {
     background-image: url('src/img/бумага.avif');
     background-blend-mode: multiply;
@@ -11,6 +13,12 @@
     background-size: 300px 350px;
     cursor: pointer;
     background-color: rgba(158, 54, 48, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 5px 5px var(--accent-color-secondary);
 }
 
 .card img {
