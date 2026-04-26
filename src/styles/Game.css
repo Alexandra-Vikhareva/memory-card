@@ -11,13 +11,14 @@
 .game-board {
     margin: 0 auto;
     padding: 20px;
+    width: 100%;
 }
 
 .cardsGrid {
     margin: 20px auto;
     max-width: 1000px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     justify-items: center;
     align-items: center;
     gap: 20px;
