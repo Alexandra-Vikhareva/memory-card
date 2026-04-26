@@ -5,7 +5,7 @@ import shuffle from '../utils/shuffle'
 import { useSound } from '../hooks/useSound'
 
 export default function Game () {
-    const { play, toggle, soundEnabled } = useSound();
+    const { play, toggle, toggleMusic, soundEnabled, musicEnabled } = useSound();
 
     const [cards, setCards] = useState([]);
     const [isGameFinished, setGameFinished] = useState(false);
@@ -135,6 +135,9 @@ export default function Game () {
                 <button onClick={toggle} className="sound-toggle">
                         {soundEnabled ? '🔊' : '🔇'}
                 </button>
+                <button onClick={toggleMusic} className="sound-btn">
+                            {musicEnabled ? '🎵' : '⏸️'}
+                        </button>
                 <div className='main-menu'>
                     <p>Выберите уровень</p>
                     <button onClick={() => handleLevle(4)}
@@ -167,6 +170,9 @@ export default function Game () {
                         <button onClick={() => setMain(true)}>Выбрать уровень</button>
                         <button onClick={toggle} className="sound-toggle">
                             {soundEnabled ? '🔊' : '🔇'}
+                        </button>
+                        <button onClick={toggleMusic} className="sound-btn">
+                            {musicEnabled ? '🎵' : '⏸️'}
                         </button>
                         <div className='info'>
                             <div>Счёт: {currentScore}</div>
