@@ -90,3 +90,11 @@
     display: flex;
     flex-direction: column;
 }
+
+.menu-screen {
+    background-image: url('src/img/wallpaper-one-piece.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}

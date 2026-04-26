@@ -102,12 +102,17 @@ export default function Game () {
         return Array.from(res)
     }
 
-    if (isMain) return <div className='main-menu'>
-        <p>Выберите уровень</p>
-        <button onClick={() => handleLevle(4)}>Лёгкий</button>
-        <button onClick={() => handleLevle(8)}>Средний</button>
-        <button onClick={() => handleLevle(12)}>Сложный</button>
+    if (isMain) return (
+        <div className='menu-screen'>
+            <div className='main-menu'>
+                <p>Выберите уровень</p>
+                <button onClick={() => handleLevle(4)}>Лёгкий</button>
+                <button onClick={() => handleLevle(8)}>Средний</button>
+                <button onClick={() => handleLevle(12)}>Сложный</button>
+            </div>
         </div>
+    )
+
     if (isLoading) return (
         <div className='loading'>
             <img src="src/img/luffy-one-piece.gif" alt="Луффи бежит" />
