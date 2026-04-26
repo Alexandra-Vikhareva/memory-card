@@ -1,64 +1,59 @@
-:root {
-    --white-color: #ffffff;
-    --accent-color: #d73332;
-    --accent-color-secondary: #9e3630;
-    --background-color: #f4f4f4;
-    --text-color: #333333;
-    font-family: 'Roboto', sans-serif;
+@import '../App.css';
+
+.game-board {
+    background-color: var(--background-color);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .cardsGrid {
+    margin: 20px auto;
+    max-width: 1000px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    justify-items: center
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    justify-items: center;
+    align-items: center;
+    gap: 20px;
 }
 
-.card {
-  width: 150px;
-  height: 250px;
-  border-radius: 10px;
+.game-header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.card img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 10px;
 }
 
 .game-message {
-    border: 1px solid black;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 5px;
+    margin: 10px auto;
+    padding: 15px;
     text-align: center;
-}
-
-.win {
-    background-color: cadetblue;
-}
-
-.loose {
-    background-color: brown;
+    font-size: 27px;
+    font-weight: 700;
+    max-width: 400px;
+    background-color: var(--accent-color);
+    color: var(--white-color);
 }
 
 .new-game {
-    margin: 10px;
-    padding: 10px;
-    border-radius: 5px;
+    margin-top: 20px;
+    padding: 10px 30px;
+    display: block;
+    margin: 30px auto;
 }
 
 .info{
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: flex-end;
     gap: 5px;
-    margin-bottom: 20px;
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    padding: 10px 20px;
+    font-size: 27px;
+    font-weight: 700;
 }
 
 .loading {
@@ -66,12 +61,15 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: var(--accent-color-secondary);}
+    color: var(--accent-color);
+    align-items: center;
+}
 
 .loading-dots {
     text-align: center;
     margin: 50px;
-    font-size: 20px;
+    font-size: 27px;
+    font-weight: 700;
 }
 
 .loading-dots::after {
@@ -87,12 +85,6 @@
   40% { content: '.'; }
   60% { content: '..'; }
   80%, 100% { content: '...'; }
-}
-
-.loading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .main-menu {
@@ -116,19 +108,21 @@
     border-bottom: 5px solid var(--accent-color-secondary);
 }
 
-.main-menu button {
-    background-color: #d73332;
-    color: #ffffff;
+button {
+    background-color: var(--accent-color);
+    color: var(--white-color);
     border: none;
     margin: 5px;
     padding: 10px 20px;
     font-size: 21px;
     font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.main-menu button:hover {
-    color: #d73332;
-    background-color: #ffffff;
+button:hover {
+    color: var(--accent-color);
+    background-color: var(--white-color);
     box-shadow: 5px 5px var(--accent-color-secondary);
 }
 

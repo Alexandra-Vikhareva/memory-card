@@ -1,0 +1,8 @@
+:root {
+    --white-color: #ffffff;
+    --accent-color: #d73332;
+    --accent-color-secondary: #9e3630;
+    --background-color: #f4f4f4;
+    --text-color: #333333;
+    font-family: 'Roboto', sans-serif;
+}

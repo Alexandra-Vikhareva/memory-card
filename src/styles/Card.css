@@ -1,9 +1,21 @@
 .card {
-    border: 1px solid black;
+    background-image: url('src/img/бумага.avif');
+    background-blend-mode: multiply;
     height: 250px;
-    width: 150px;
+    width: 180px;
     font-size: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-position: center;
+    background-size: 300px 350px;
+    cursor: pointer;
+    background-color: rgba(158, 54, 48, 0.2);
+}
+
+.card img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+  display: block;
 }

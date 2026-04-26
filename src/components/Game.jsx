@@ -151,12 +151,15 @@ export default function Game () {
     )
     else {
         return (
-            <div>
-                <button onClick={() => setMain(true)}>Выбрать уровень</button>
-                <div className='info'>
-                    <div>Счёт: {currentScore}</div>
-                    <div>Рекорд: {maxScore}</div>
+            <div className='game-board'>
+                <div className='game-header'>
+                    <button onClick={() => setMain(true)}>Выбрать уровень</button>
+                    <div className='info'>
+                        <div>Счёт: {currentScore}</div>
+                        <div>Рекорд: {maxScore}</div>
+                    </div>
                 </div>
+                
                 {isGameFinished && (
                     <div className={`game-message ${cards.every(card => card.isClicked) ? 'win' : 'loose'}`}>
                     {cards.every(card => card.isClicked) 
@@ -175,7 +178,7 @@ export default function Game () {
                         ))   
                     }
                 </div>
-                <button className='new-game btn' onClick={() => resetGame(difficulty)}>Новая игра</button>
+                <button className='new-game' onClick={() => resetGame(difficulty)}>Новая игра</button>
             </div>
         )}
 }
