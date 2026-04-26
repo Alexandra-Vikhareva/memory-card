@@ -1,8 +1,14 @@
 @import '../App.css';
 
-.game-board {
+.game{
     background-color: var(--background-color);
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.game-board {
     margin: 0 auto;
     padding: 20px;
 }
@@ -103,9 +109,10 @@
 
 .main-menu p {
     background-color: var(--accent-color);
-    color: #ffffff;
+    color: var(--white-color);
     padding: 10px;
     border-bottom: 5px solid var(--accent-color-secondary);
+    margin-bottom: 30px;
 }
 
 button {

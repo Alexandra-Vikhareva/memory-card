@@ -151,34 +151,40 @@ export default function Game () {
     )
     else {
         return (
-            <div className='game-board'>
+            <div className='game'>
                 <div className='game-header'>
-                    <button onClick={() => setMain(true)}>Выбрать уровень</button>
-                    <div className='info'>
-                        <div>Счёт: {currentScore}</div>
-                        <div>Рекорд: {maxScore}</div>
-                    </div>
+                        <button onClick={() => setMain(true)}>Выбрать уровень</button>
+                        <div className='info'>
+                            <div>Счёт: {currentScore}</div>
+                            <div>Рекорд: {maxScore}</div>
+                        </div>
                 </div>
-                
-                {isGameFinished && (
-                    <div className={`game-message ${cards.every(card => card.isClicked) ? 'win' : 'loose'}`}>
-                    {cards.every(card => card.isClicked) 
-                        ? '🎉 Победа! 🎉' 
-                        : '💀 Вы проиграли! 💀'}
-                    </div>
-                )}
 
-                <div className='cardsGrid'>
-                    {
-                        cards.map((item)=> (
-                        <Card image={item.image} 
-                                id={item.id}
-                                key={item.id}
-                                onClick={handleCardClick}></Card>
-                        ))   
-                    }
+                <div className='game-board'>
+                    
+                    {isGameFinished && (
+                        <div className={`game-message ${cards.every(card => card.isClicked) ? 'win' : 'loose'}`}>
+                        {cards.every(card => card.isClicked) 
+                            ? '🎉 Победа! 🎉' 
+                            : '💀 Вы проиграли! 💀'}
+                        </div>
+                    )}
+
+                    <div className='cardsGrid'>
+                        {
+                            cards.map((item)=> (
+                            <Card image={item.image} 
+                                    id={item.id}
+                                    key={item.id}
+                                    onClick={handleCardClick}></Card>
+                            ))   
+                        }
+                    </div>
                 </div>
-                <button className='new-game' onClick={() => resetGame(difficulty)}>Новая игра</button>
+
+                <button className='new-game' onClick={() => resetGame(difficulty)}>
+                    Новая игра
+                </button>
             </div>
         )}
 }
