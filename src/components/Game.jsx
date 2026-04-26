@@ -2,8 +2,11 @@ import { useState, useEffect } from 'react'
 import Card from './Card'
 import '../styles/Game.css'
 import shuffle from '../utils/shuffle'
+import { useSound } from '../hooks/useSound'
 
 export default function Game () {
+    const { play, toggle, soundEnabled } = useSound();
+
     const [cards, setCards] = useState([]);
     const [isGameFinished, setGameFinished] = useState(false);
     const [currentScore, setCurrentScore] = useState(0);
@@ -26,9 +29,11 @@ export default function Game () {
                                 item.id === id )
 
             if (selectedCard.isClicked) {
+                play('lose');
                 setGameFinished(true)
             }
             else {
+                play('click');
                 const newScore = currentScore + 1;
                 setCurrentScore(newScore);
                 if (newScore > maxScore) setMaxScore(newScore)
@@ -38,6 +43,9 @@ export default function Game () {
                                     ? {...item, isClicked: true} 
                                     : item);
                     const allClicked = marked.every(el => el.isClicked === true);
+                    if (allClicked) {
+                        play('win')
+                    };
                     setGameFinished(allClicked);
                     return allClicked? marked : shuffle(marked)
                 });    
@@ -124,6 +132,9 @@ export default function Game () {
         return (
             <div className='menu-screen'
             style={{backgroundImage: `url(${backgroundUrl})`}}>
+                <button onClick={toggle} className="sound-toggle">
+                        {soundEnabled ? '🔊' : '🔇'}
+                </button>
                 <div className='main-menu'>
                     <p>Выберите уровень</p>
                     <button onClick={() => handleLevle(4)}
@@ -154,6 +165,9 @@ export default function Game () {
             <div className='game'>
                 <div className='game-header'>
                         <button onClick={() => setMain(true)}>Выбрать уровень</button>
+                        <button onClick={toggle} className="sound-toggle">
+                            {soundEnabled ? '🔊' : '🔇'}
+                        </button>
                         <div className='info'>
                             <div>Счёт: {currentScore}</div>
                             <div>Рекорд: {maxScore}</div>
