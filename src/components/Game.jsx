@@ -14,6 +14,7 @@ export default function Game () {
     const [isLoading, setLoading] = useState(true);
     const [difficulty, setDifficulty] = useState(0);
     const [isMain, setMain] = useState(true);
+    const [hoverLevel, setHoverLevel] = useState(null);
 
     useEffect(() => {
         localStorage.setItem('maxScore', maxScore)
@@ -61,6 +62,7 @@ export default function Game () {
             setCards(newArr);
             setGameFinished(false);
             setCurrentScore(0);
+            setHoverLevel(null);
         } catch (err) {
             console.error('Ошибка сброса:', err);
         } finally {
@@ -102,40 +104,87 @@ export default function Game () {
         return Array.from(res)
     }
 
-    if (isMain) return <div className='main-menu'>
-        <p>Выберите уровень</p>
-        <button onClick={() => handleLevle(4)}>Лёгкий</button>
-        <button onClick={() => handleLevle(8)}>Средний</button>
-        <button onClick={() => handleLevle(12)}>Сложный</button>
+    if (isMain) {
+
+        let backgroundUrl = '';
+        switch (hoverLevel) {
+            case 4: 
+                backgroundUrl = 'src/img/arlong-park.webp';
+                break;
+            case 8:
+                backgroundUrl = 'src/img/Alabasta.jpg';
+                break;
+            case 12:
+                backgroundUrl = 'src/img/skull-dome.webp';
+                break;
+            default: 
+                backgroundUrl = 'src/img/wallpaper-one-piece.jpg';
+        }
+        
+        return (
+            <div className='menu-screen'
+            style={{backgroundImage: `url(${backgroundUrl})`}}>
+                <div className='main-menu'>
+                    <p>Выберите уровень</p>
+                    <button onClick={() => handleLevle(4)}
+                            onMouseEnter={() => setHoverLevel(4)}
+                            onMouseLeave={() => setHoverLevel(null)}>
+                                Лёгкий</button>
+                    <button onClick={() => handleLevle(8)}
+                            onMouseEnter={() => setHoverLevel(8)}
+                            onMouseLeave={() => setHoverLevel(null)}>
+                                Средний</button>
+                    <button onClick={() => handleLevle(12)}
+                            onMouseEnter={() => setHoverLevel(12)}
+                            onMouseLeave={() => setHoverLevel(null)}>
+                                Сложный</button>
+                </div>
+            </div>
+    )}
+
+    if (isLoading) return (
+        <div className='loading'>
+            <img src="src/img/luffy-one-piece.gif" alt="Луффи бежит" />
+            <div className='loading-dots'>Загрузка фруктов</div>
         </div>
-    if (isLoading) return <div className='loading-dots'>Загрузка фруктов</div>
+        
+    )
     else {
         return (
-            <div>
-                <button onClick={() => setMain(true)}>Выбрать уровень</button>
-                <div className='info'>
-                    <div>Счёт: {currentScore}</div>
-                    <div>Рекорд: {maxScore}</div>
+            <div className='game'>
+                <div className='game-header'>
+                        <button onClick={() => setMain(true)}>Выбрать уровень</button>
+                        <div className='info'>
+                            <div>Счёт: {currentScore}</div>
+                            <div>Рекорд: {maxScore}</div>
+                        </div>
                 </div>
-                {isGameFinished && (
-                    <div className={`game-message ${cards.every(card => card.isClicked) ? 'win' : 'loose'}`}>
-                    {cards.every(card => card.isClicked) 
-                        ? '🎉 Победа! 🎉' 
-                        : '💀 Вы проиграли! 💀'}
-                    </div>
-                )}
 
-                <div className='cardsGrid'>
-                    {
-                        cards.map((item)=> (
-                        <Card image={item.image} 
-                                id={item.id}
-                                key={item.id}
-                                onClick={handleCardClick}></Card>
-                        ))   
-                    }
+                <div className='game-board'>
+                    
+                    {isGameFinished && (
+                        <div className={`game-message ${cards.every(card => card.isClicked) ? 'win' : 'loose'}`}>
+                        {cards.every(card => card.isClicked) 
+                            ? '🎉 Победа! 🎉' 
+                            : '💀 Вы проиграли! 💀'}
+                        </div>
+                    )}
+
+                    <div className='cardsGrid'>
+                        {
+                            cards.map((item)=> (
+                            <Card image={item.image} 
+                                    id={item.id}
+                                    key={item.id}
+                                    onClick={handleCardClick}></Card>
+                            ))   
+                        }
+                    </div>
                 </div>
-                <button className='new-game btn' onClick={() => resetGame(difficulty)}>Новая игра</button>
+
+                <button className='new-game' onClick={() => resetGame(difficulty)}>
+                    Новая игра
+                </button>
             </div>
         )}
 }
