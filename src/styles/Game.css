@@ -134,10 +134,24 @@ button:hover {
     box-shadow: 5px 5px var(--accent-color-secondary);
 }
 
+.main-menu button {
+    padding-left: 30px;
+}
+
+.main-menu button::after {
+    content: '▶';
+    color: var(--accent-color);
+    position: relative;
+    left: 10px;
+    opacity: 0;
+    transition: all 0.2s ease;;
+}
+
 .main-menu button:hover::after {
     content: '▶';
     position: relative;
     left: 10px;
+    opacity: 1;
 }
 
 .menu-screen {
