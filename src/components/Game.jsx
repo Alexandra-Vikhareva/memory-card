@@ -14,6 +14,7 @@ export default function Game () {
     const [isLoading, setLoading] = useState(true);
     const [difficulty, setDifficulty] = useState(0);
     const [isMain, setMain] = useState(true);
+    const [hoverLevel, setHoverLevel] = useState(null);
 
     useEffect(() => {
         localStorage.setItem('maxScore', maxScore)
@@ -61,6 +62,7 @@ export default function Game () {
             setCards(newArr);
             setGameFinished(false);
             setCurrentScore(0);
+            setHoverLevel(null);
         } catch (err) {
             console.error('Ошибка сброса:', err);
         } finally {
@@ -102,16 +104,43 @@ export default function Game () {
         return Array.from(res)
     }
 
-    if (isMain) return (
-        <div className='menu-screen'>
-            <div className='main-menu'>
-                <p>Выберите уровень</p>
-                <button onClick={() => handleLevle(4)}>Лёгкий</button>
-                <button onClick={() => handleLevle(8)}>Средний</button>
-                <button onClick={() => handleLevle(12)}>Сложный</button>
+    if (isMain) {
+
+        let backgroundUrl = '';
+        switch (hoverLevel) {
+            case 4: 
+                backgroundUrl = 'src/img/arlong-park.webp';
+                break;
+            case 8:
+                backgroundUrl = 'src/img/Alabasta.jpg';
+                break;
+            case 12:
+                backgroundUrl = 'src/img/skull-dome.webp';
+                break;
+            default: 
+                backgroundUrl = 'src/img/wallpaper-one-piece.jpg';
+        }
+        
+        return (
+            <div className='menu-screen'
+            style={{backgroundImage: `url(${backgroundUrl})`}}>
+                <div className='main-menu'>
+                    <p>Выберите уровень</p>
+                    <button onClick={() => handleLevle(4)}
+                            onMouseEnter={() => setHoverLevel(4)}
+                            onMouseLeave={() => setHoverLevel(null)}>
+                                Лёгкий</button>
+                    <button onClick={() => handleLevle(8)}
+                            onMouseEnter={() => setHoverLevel(8)}
+                            onMouseLeave={() => setHoverLevel(null)}>
+                                Средний</button>
+                    <button onClick={() => handleLevle(12)}
+                            onMouseEnter={() => setHoverLevel(12)}
+                            onMouseLeave={() => setHoverLevel(null)}>
+                                Сложный</button>
+                </div>
             </div>
-        </div>
-    )
+    )}
 
     if (isLoading) return (
         <div className='loading'>
