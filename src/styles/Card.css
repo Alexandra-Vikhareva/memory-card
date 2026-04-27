@@ -1,7 +1,7 @@
 @import '../App.css';
 
 .card {
-    background-image: url('img/бумага.avif');
+    background-image: url('/memory-card/img/бумага.avif');
     background-blend-mode: multiply;
     height: 250px;
     width: 180px;
