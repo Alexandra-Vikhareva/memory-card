@@ -3,11 +3,11 @@ import { useRef, useState, useEffect } from 'react'
 export function useSound() {
     const soundEnabled = useRef(true);
     
-    const clickSound = useRef(new Audio('src/sounds/click.mp3'));
-    const winSound = useRef(new Audio('src/sounds/win.mp3'));
-    const loseSound = useRef(new Audio('src/sounds/lose.mp3'));
+    const clickSound = useRef(new Audio('/sounds/click.mp3'));
+    const winSound = useRef(new Audio('/sounds/win.mp3'));
+    const loseSound = useRef(new Audio('/sounds/lose.mp3'));
 
-    const backgroundMusic = useRef(new Audio('src/sounds/Kitadani_Hiroshi_One_Piece_OP1_-_We_Are.mp3'));
+    const backgroundMusic = useRef(new Audio('/sounds/Kitadani_Hiroshi_One_Piece_OP1_-_We_Are.mp3'));
     const [isMusicOn, setIsMusicOn] = useState(true);
 
     useEffect(() => {
@@ -45,11 +45,11 @@ export function useSound() {
         sound.play().catch(err => console.log('Звук не воспроизвёлся:', err));
     };
     
-    const [isSoundOn, setIsSoundOn] = useState(true); // Создаём состояние
+    const [isSoundOn, setIsSoundOn] = useState(true);
 
     const toggle = () => {
         soundEnabled.current = !soundEnabled.current;
-        setIsSoundOn(soundEnabled.current); // 👈 Обновляем состояние
+        setIsSoundOn(soundEnabled.current);
     };
 
     const toggleMusic = () => {

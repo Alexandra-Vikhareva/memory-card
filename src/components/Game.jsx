@@ -117,16 +117,16 @@ export default function Game () {
         let backgroundUrl = '';
         switch (hoverLevel) {
             case 4: 
-                backgroundUrl = 'src/img/arlong-park.webp';
+                backgroundUrl = '/img/arlong-park.webp';
                 break;
             case 8:
-                backgroundUrl = 'src/img/Alabasta.jpg';
+                backgroundUrl = '/img/Alabasta.jpg';
                 break;
             case 12:
-                backgroundUrl = 'src/img/skull-dome.webp';
+                backgroundUrl = '/img/skull-dome.webp';
                 break;
             default: 
-                backgroundUrl = 'src/img/wallpaper-one-piece.jpg';
+                backgroundUrl = '/img/wallpaper-one-piece.jpg';
         }
         
         return (
@@ -158,7 +158,7 @@ export default function Game () {
 
     if (isLoading) return (
         <div className='loading'>
-            <img src="src/img/luffy-one-piece.gif" alt="Луффи бежит" />
+            <img src="/img/luffy-one-piece.gif" alt="Луффи бежит" />
             <div className='loading-dots'>Загрузка фруктов</div>
         </div>
         
