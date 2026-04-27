@@ -3,11 +3,11 @@ import { useRef, useState, useEffect } from 'react'
 export function useSound() {
     const soundEnabled = useRef(true);
     
-    const clickSound = useRef(new Audio('sounds/click.mp3'));
-    const winSound = useRef(new Audio('sounds/win.mp3'));
-    const loseSound = useRef(new Audio('sounds/lose.mp3'));
+    const clickSound = useRef(new Audio('/memory-card/sounds/click.mp3'));
+    const winSound = useRef(new Audio('/memory-card/sounds/win.mp3'));
+    const loseSound = useRef(new Audio('/memory-card/sounds/lose.mp3'));
 
-    const backgroundMusic = useRef(new Audio('sounds/Kitadani_Hiroshi_One_Piece_OP1_-_We_Are.mp3'));
+    const backgroundMusic = useRef(new Audio('/memory-card/sounds/Kitadani_Hiroshi_One_Piece_OP1_-_We_Are.mp3'));
     const [isMusicOn, setIsMusicOn] = useState(true);
 
     useEffect(() => {
