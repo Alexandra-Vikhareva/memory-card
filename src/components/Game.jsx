@@ -117,16 +117,16 @@ export default function Game () {
         let backgroundUrl = '';
         switch (hoverLevel) {
             case 4: 
-                backgroundUrl = '/img/arlong-park.webp';
+                backgroundUrl = 'img/arlong-park.webp';
                 break;
             case 8:
-                backgroundUrl = '/img/Alabasta.jpg';
+                backgroundUrl = 'img/Alabasta.jpg';
                 break;
             case 12:
-                backgroundUrl = '/img/skull-dome.webp';
+                backgroundUrl = 'img/skull-dome.webp';
                 break;
             default: 
-                backgroundUrl = '/img/wallpaper-one-piece.jpg';
+                backgroundUrl = 'img/wallpaper-one-piece.jpg';
         }
         
         return (
