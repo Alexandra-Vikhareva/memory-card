@@ -158,7 +158,7 @@ export default function Game () {
 
     if (isLoading) return (
         <div className='loading'>
-            <img src="/img/luffy-one-piece.gif" alt="Луффи бежит" />
+            <img src="img/luffy-one-piece.gif" alt="Луффи бежит" />
             <div className='loading-dots'>Загрузка фруктов</div>
         </div>
         
